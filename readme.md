@@ -1,6 +1,6 @@
 
-# Template Repository
-Set up a great looking readme.md quickly using [this repository].
+# Pi Pico Serial communication
+This repository holds the minimum viable code to get your raspberry pi pico to print over serial usb.
 
 &nbsp;
 
