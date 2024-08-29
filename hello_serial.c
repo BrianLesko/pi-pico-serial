@@ -21,7 +21,7 @@ int main() {
                 input[index] = '\0';  // Null-terminate the string
 
                 // Check if the last three characters are "end"
-                if (index >= 3 && strcmp(&input[index - 3], "end") == 0) {
+                if (index >= 3 && input[index - 3] == 'e' && input[index - 2] == 'n' && input[index - 1] == 'd') {
                     input[index - 3] = '\0';  // Null-terminate the string before "end"
                     printf("Received: %s\n", input);
                     index = 0;  // Reset index for next input

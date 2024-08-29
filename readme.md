@@ -1,6 +1,8 @@
 
 # Pi Pico Serial communication
-This repository holds the minimum viable code to get your raspberry pi pico to print over serial usb.
+This repository holds c code for a raspberry pi pico, a microcontroller for sending and receiving serial communication over usb. Flash the pi pico and it will print "hello world" over the usb serial interface. It will print the received buffer after "end" is received over the same serial port. 
+
+This is useful for automating hardware components as the pi pico is very good at interfacing with electronics. You can easily create a python program to send messages to the pi pico using the 'pyserial' library .
 
 &nbsp;
 
@@ -8,68 +10,46 @@ This repository holds the minimum viable code to get your raspberry pi pico to p
 
 &nbsp;
 
-## Software Dependencies
-
-This code uses the following libraries:
-- `streamlit`: for building the user interface.
-- `numpy`: for creating arrays.
-- `matplotlib`: for plotting the stepper motor visualization
-- `hidapi`: for accessing usb connections on the host device
-
-&nbsp;
-
 ## Hardware Dependencies
-1. A base station computer
-2. A second computer for the robot
-3. A PWM capable arduino + cable + servo motors and BLDC Motor controller
-4. A PS5 remote + cable
+1. Pi Pico
+2. Host computer
 
 ## Usage
-1. clone this repository
+1. Clone this repository
 ```
 git clone ...
 ```
-2. The base station and robot computers must be on the same network. Set up each device with a static IP
-2. Change the robot IP in 'app.py' and 'car.py' you can also change the port which is '12345'
-3. Change the PS5 remote vendorID and productID in 'app.py'
-4. Plug the arduino into the robot
-5. Run the arduino sketch.ino file on your arduino
-6. Run the car.py file on your robot 
-```
-python car.py
-```
-7. plug the PS5 remote into the base station
-8. run the streamlit app with the following command in your base station terminal
-```
-streamlit run app.py
-```
-
-This will start the local Streamlit server, and you can access the interface by opening a web browser and navigating to `http://localhost:8501`.
+2. Navigate to the project directory
+3. Build the project using CMake
+4. Connect the Raspberry Pi Pico to your computer via USB
+5. Flash the compiled program to the Raspberry Pi Pico
+6. Open a serial terminal on your computer (e.g., VScode serial plugin) and connect to the Raspberry Pi Pico at the specified baud rate (e.g., 115200)
+7. The program will start running, and you should see "Hello, world!" messages printed every second
+8. To interact with the program, type input into the serial terminal. The program will check for the "end" string and print the received input up to that point
 
 &nbsp;
 
 ## Repository Structure
 ```
-repository/
-├── app.py # The base station UI to send the Internet commands to the robot
-├── customize_gui # class for adding gui elements
-├── dualsense.py # The class used to decode received bytes from the wired controller
-├── ethernet.py # a helper class for sending Internet IP communciation
-├── car.py # Recieves the internet commands and relays them to the arduino
-├── sketch.ino # the arduino code to control the motors
-├── requirements.txt # the python packages needed to run locally
-├── .gitignore # includes the local virtual environment named my_env
-└── docs/
-    └── preview.png # preview photo for Github
+pi-pico-serial/
+├── CMakeLists.txt # CMake configuration file for building the project
+├── build/ # Directory for build artifacts
+├── docs/ # Documentation and related files
+├── hello_serial.c # Source code for the serial communication example
+├── pico_sdk_import.cmake # CMake script to import the Pico SDK
+└── readme.md # Project description and instructions
 ```
 
 &nbsp;
 
 ## Topics 
 ```
-Python | Low Code UI | Mobile robot | Internet IP 
-HIDapi | decode bytes | PS5 | Sony | Dualsense | external device | communication 
-Mechanical and Robotics engineer
+## Topics 
+```
+C | USB | Serial Communication | Raspberry Pi Pico 
+Baud Rate | Input Handling | Embedded Systems | Microcontroller 
+UART | stdio | Optimization | Memory Efficiency
+```
 ```
 &nbsp;
 
